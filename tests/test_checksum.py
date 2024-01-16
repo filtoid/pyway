@@ -1,5 +1,6 @@
 import pytest
 import os
+import sys
 from strip_ansi import strip_ansi
 from pyway.checksum import Checksum
 from pyway.migrate import Migrate
@@ -14,6 +15,7 @@ def mysqld_connect(autouse=True):
     return mysqld.run()
 
 
+@pytest.mark.mysqld
 @pytest.mark.checksum_test
 def test_pyway_table_checksum(mysqld_connect):
     config = ConfigFile()
@@ -36,6 +38,7 @@ def test_pyway_table_checksum(mysqld_connect):
     assert checksum == "8327AD7B"
 
 
+@pytest.mark.mysqld
 @pytest.mark.checksum_test
 def test_pyway_table_checksum_fileinvalid(mysqld_connect):
     config = ConfigFile()
@@ -57,7 +60,7 @@ def test_pyway_table_checksum_fileinvalid(mysqld_connect):
 
     assert True
 
-
+@pytest.mark.mysqld
 @pytest.mark.checksum_test
 def test_pyway_table_checksum_fullpath(mysqld_connect):
     config = ConfigFile()
@@ -80,7 +83,7 @@ def test_pyway_table_checksum_fullpath(mysqld_connect):
     assert checksum == "8327AD7B"
 
 
-
+@pytest.mark.mysqld
 @pytest.mark.checksum_test
 def test_pyway_table_checksum_invalid_filename(mysqld_connect):
     config = ConfigFile()

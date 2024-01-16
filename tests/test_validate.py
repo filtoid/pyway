@@ -17,6 +17,7 @@ def mysqld_connect(autouse=True):
     return mysqld.run()
 
 
+@pytest.mark.mysqld
 @pytest.mark.validate_test
 def test_pyway_table_validate(mysqld_connect):
     """ Import a file and validate that it matches """
@@ -37,6 +38,7 @@ def test_pyway_table_validate(mysqld_connect):
     assert strip_ansi(output) == VALIDATE_OUTPUT
 
 
+@pytest.mark.mysqld
 @pytest.mark.validate_test
 def test_pyway_table_validate_noschemasfound(mysqld_connect):
     """ Test to see what happens when we try to validate and no files are found """
@@ -56,6 +58,7 @@ def test_pyway_table_validate_noschemasfound(mysqld_connect):
     assert True
 
 
+@pytest.mark.mysqld
 @pytest.mark.validate_test
 def test_pyway_table_validate_noschemasfound_skiperror(mysqld_connect):
     """ Test to see what happens when we try to validate and no files are found """
@@ -73,6 +76,7 @@ def test_pyway_table_validate_noschemasfound_skiperror(mysqld_connect):
     assert output == ""
 
 
+@pytest.mark.mysqld
 @pytest.mark.validate_test
 def test_pyway_table_validate_nofilesfound(mysqld_connect):
     """ Test to see what happens when we try to validate and no files are found """
@@ -98,6 +102,7 @@ def test_pyway_table_validate_nofilesfound(mysqld_connect):
     assert True
 
 
+@pytest.mark.mysqld
 @pytest.mark.validate_test
 def test_pyway_table_validate_diffname(mysqld_connect):
     """ Import a file and change the filename """
@@ -124,6 +129,7 @@ def test_pyway_table_validate_diffname(mysqld_connect):
     assert bool("with diff name of the database" in str(e.value))
 
 
+@pytest.mark.mysqld
 @pytest.mark.validate_test
 def test_pyway_table_validate_diffchecksum(mysqld_connect):
     """ Import a file and change the filename """
@@ -150,6 +156,7 @@ def test_pyway_table_validate_diffchecksum(mysqld_connect):
     assert bool("with diff script" in str(e.value))
 
 
+@pytest.mark.mysqld
 @pytest.mark.validate_test
 def test_pyway_table_validate_diffchecksum_dos(mysqld_connect):
     """ Import a file and change the filename """
@@ -176,6 +183,7 @@ def test_pyway_table_validate_diffchecksum_dos(mysqld_connect):
     assert bool("DOS" in str(e.value))
 
 
+@pytest.mark.mysqld
 @pytest.mark.validate_test
 def test_pyway_table_validate_outofdate(mysqld_connect):
     """ Import a file and remove that file """

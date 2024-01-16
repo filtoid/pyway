@@ -28,6 +28,7 @@ def mysqld_connect(autouse=True):
     return mysqld.run()
 
 
+@pytest.mark.mysqld
 @pytest.mark.migrate_test
 def test_pyway_migrate(mysqld_connect):
     config = ConfigFile()
@@ -45,6 +46,7 @@ def test_pyway_migrate(mysqld_connect):
     assert strip_ansi(output) == MIGRATE_OUTPUT
 
 
+@pytest.mark.mysqld
 @pytest.mark.migrate_test
 def test_pyway_migrate_nothingtodo(mysqld_connect):
     config = ConfigFile()
@@ -63,6 +65,8 @@ def test_pyway_migrate_nothingtodo(mysqld_connect):
 
     assert strip_ansi(output) == MIGRATE_OUTPUT_NOTHING
 
+
+@pytest.mark.mysqld
 @pytest.mark.migrate_test
 def test_pyway_migrate_no_local_files(mysqld_connect):
     config = ConfigFile()
