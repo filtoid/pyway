@@ -1,5 +1,9 @@
 import pytest
 import os
+
+import sys
+from strip_ansi import strip_ansi
+
 from pyway.checksum import Checksum
 from pyway.migrate import Migrate
 from pyway.settings import ConfigFile
@@ -80,6 +84,7 @@ def test_pyway_table_checksum_fullpath(mysqld_connect: Mysqld) -> None:
     name, checksum = Checksum(config).run()
     assert name == "V01_01__test1.sql"
     assert checksum == "8327AD7B"
+
 
 
 @pytest.mark.checksum_test
