@@ -35,7 +35,7 @@ Priority is `env variables` -> `config file` -> `command args`
 | PYWAY_SQL_MIGRATION_SEPARATOR | | Separator between version and description to the migration file | __ |
 | PYWAY_SQL_MIGRATION_SUFFIXES | | Suffix extension for migration files | .sql |
 | PYWAY_TABLE | --database-table | Name of schema history table | *None* |
-| PYWAY_TYPE | --database-type | Data Base Management System [`postgres`, `mysql`, `duckdb`, `sqlite` ] | *None* *required* |
+| PYWAY_TYPE | --database-type | Data Base Management System [`postgres`, `mysql`, `duckdb`, `sqlite`, `sqlserver` ] | *None* *required* |
 | PYWAY_DATABASE_HOST | --database-host | Host to connect to the database | *None* |
 | PYWAY_DATABASE_PORT | --database-port | Port to connect to the database | *None* |
 | PYWAY_DATABASE_NAME | --database-name | Name of database to connect | *None* |
@@ -72,6 +72,18 @@ database_migration_dir: schema
 database_table: pyway
 ```
 
+_SqlServer_
+```
+database_type: sqlserver
+database_driver: ODBC Driver 17 for SQL Server
+database_username: admin
+database_password: 123456
+database_host: localhost
+database_port: 1443
+database_name: master
+database_migration_dir: schema
+database_table: pyway
+```
 
 ## Pyway Files
 Files are raw SQL files that are named like the following. Major/minor versioning and semantic versioning is supported.
