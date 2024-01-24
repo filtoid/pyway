@@ -37,6 +37,7 @@ class Settings():
         parser.add_argument("--database-username", help="Database username")
         parser.add_argument("--database-password", help="Database password")
         parser.add_argument("--database-collation", help="Database collation")
+        parser.add_argument("--database-trusted-connection", help="Treat SQLServer connection as trusted (yes/no)")
 
         parser.add_argument("--schema-file", help="Schema file for import")
         parser.add_argument("--checksum-file", help="Checksum to update")

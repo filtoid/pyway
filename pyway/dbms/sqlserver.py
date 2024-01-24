@@ -27,9 +27,17 @@ class Sqlserver():
     def connect(self):
         server_str = f"DRIVER={{{self.config.database_driver}}};" \
             f"SERVER={self.config.database_host};" \
-            f"DATABASE={self.config.database_name};" \
-            f"UID={self.config.database_username};" \
-            f"PWD={self.config.database_password};"
+            f"DATABASE={self.config.database_name};"
+        
+        if self.config.database_trusted_connection.lower() == 'yes':
+            server_str = f"{server_str}MARS_Connection=yes;" \
+                          "TrustServerCertificate=yes;INTEGRATED " \
+                          "SECURITY=yes;ENCRYPT=no;"
+        else:
+            server_str = f"{server_str}" \
+                         f"UID={self.config.database_username};" \
+                         f"PWD={self.config.database_password};"
+        
         return pyodbc.connect(server_str)
     
     
