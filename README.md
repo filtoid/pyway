@@ -34,6 +34,7 @@ Priority is `env variables` -> `config file` -> `command args`
 | PYWAY_DATABASE_NAME | --database-name | Name of database to connect | postgres |
 | PYWAY_DATABASE_USERNAME |--database-username | User to use to connect to the database | postgres |
 | PYWAY_DATABASE_PASSWORD | --database-password | Password to use to connect to the database | *None* |
+| PYWAY_DATABASE_TRUSTED_CONNECTION | --database-trusted-connection | Use integrated authentication (`sqlserver` only) [`yes`, `no`]  | no |
 | PYWAY_CONFIG_FILE | -c, --config | Configuration file | .pyway.conf |
 | | --schema-file | Used when importing a schema file | |
 | | --checksum-file | Used when updating a checksum - *advanced use*! | |
@@ -75,6 +76,7 @@ database_port: 1443
 database_name: master
 database_migration_dir: schema
 database_table: pyway
+database_trusted_connect: no
 ```
 
 ## Pyway Files

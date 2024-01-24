@@ -35,7 +35,8 @@ class Settings():
         parser.add_argument("--database-name", help="Database name")
         parser.add_argument("--database-username", help="Database username")
         parser.add_argument("--database-password", help="Database password")
-
+        parser.add_argument("--database-trusted-connection", help="Treat SQLServer connection as trusted (yes/no)")
+        
         parser.add_argument("--schema-file", help="Schema file for import")
         parser.add_argument("--checksum-file", help="Checksum to update")
         parser.add_argument("-c", "--config", help="Config file")
@@ -69,6 +70,7 @@ class ConfigFile():
         self.database_name = os.environ.get('PYWAY_DATABASE_NAME', 'postgres')
         self.database_username = os.environ.get('PYWAY_DATABASE_USERNAME', 'postgres')
         self.database_password = os.environ.get('PYWAY_DATABASE_PASSWORD', 'password')
+        self.database_trusted_connection = os.environ.get('PYWAY_DATABASE_TRUSTED_CONNECTION', 'no')
         self.schema_file = None
         self.checksum_file = None
         self.config = os.environ.get('PYWAY_CONFIG_FILE', '.pyway.conf')
