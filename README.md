@@ -76,7 +76,7 @@ database_port: 1443
 database_name: master
 database_migration_dir: schema
 database_table: pyway
-database_trusted_connect: no
+database_trusted_connection: no
 ```
 
 ## Pyway Files
