@@ -78,6 +78,7 @@ database_migration_dir: schema
 database_table: pyway
 database_trusted_connection: no
 ```
+(specifying `database_trusted_connection: yes` will ignore `database_username` and `database_password` and attempt to use integrated authentication)
 
 ## Pyway Files
 Files are raw SQL files that are named like the following. Major/minor versioning and semantic versioning is supported.
