@@ -29,8 +29,8 @@ class Sqlserver():
             f"SERVER={self.config.database_host};" \
             f"DATABASE={self.config.database_name};"
         
-        if self.config.database_trusted_connection.lower() == 'yes':
-            server_str = f"{server_str}MARS_Connection=yes;" \
+        if self.config.database_trusted_connection is True:
+            server_str = f"{server_str}Trusted_Connection=yes;" \
                           "TrustServerCertificate=yes;INTEGRATED " \
                           "SECURITY=yes;ENCRYPT=no;"
         else:
