@@ -1,0 +1,5 @@
+SELECT * FROM table1;
+GO 2
+SELECT * FROM table2;
+GO 3
+

@@ -1,4 +1,5 @@
 from pyway.migration import Migration
+from pyway.helpers import Utils
 import pyodbc
 
 CREATE_VERSION_MIGRATIONS = "if OBJECT_ID(N'%s', N'U') IS NULL " \
@@ -39,18 +40,20 @@ class Sqlserver():
                          f"PWD={self.config.database_password};"
         
         return pyodbc.connect(server_str)
-    
-    
+
+
     def create_version_table_if_not_exists(self):
         self.execute(CREATE_VERSION_MIGRATIONS % (self.version_table, self.version_table))
 
 
     def execute(self, script):
+        scripts = Utils.split_script_on_go(script)
         cnx = self.connect()
         with cnx.cursor() as cur:
-            cur.execute(script)
-
-        cnx.commit()
+            for s in scripts:
+                cur.execute(s)
+                cnx.commit()
+        
         cnx.close()
 
 
@@ -85,4 +88,3 @@ class Sqlserver():
 
     def update_checksum(self, migration):
         self.execute(UPDATE_CHECKSUM % (self.version_table, migration.checksum, migration.version))
-
