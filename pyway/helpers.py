@@ -124,3 +124,31 @@ class Utils():
     @staticmethod
     def format_version(version: str) -> str:
         return ".".join(f"{int(v):02}" for v in version.split("."))
+
+    @staticmethod
+    def split_script_on_go(script):
+        '''
+        SQL Server scripts can contain the keyword GO which indicates committing before
+        continuing, treating a single script page as multiple scripts.
+        '''
+        output_scripts = [""]
+        for line in script.split('\n'):
+            if line.strip().upper().startswith("GO"):
+                if line.strip()[2:].strip() == "":
+                    # Start next statement
+                    output_scripts.append("")
+                else:
+                    # Possibly a number - do repetitions
+                    try:
+                        val = line.strip().replace("GO ", "")
+                        count = int(val)
+                        for _ in range(1,count):
+                            output_scripts.append(output_scripts[-1])
+                    except ValueError:
+                        # Unable to parse as number, ignore
+                        pass
+                    output_scripts.append("")
+            else:
+                output_scripts[-1] = f"{output_scripts[-1]}{line.strip()}\n"
+
+        return [o.strip() for o in output_scripts if o.strip() != ""]

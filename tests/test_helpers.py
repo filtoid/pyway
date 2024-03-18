@@ -92,5 +92,45 @@ def test_semantic_version_name_major_minor_period() -> None:
 
 
 @pytest.mark.helpers_test
+def test_split_on_go_no_splits():
+    with open(os.path.join('tests', 'data', 'sql_server_go_separator', '0_no_go_statement.sql')) as f:
+        scripts = Utils.split_script_on_go(f.read())
+        assert len(scripts) == 1
+        assert scripts[0] == "SELECT * FROM table1;\n\nSELECT * FROM table2;"
+
+
+@pytest.mark.helpers_test
 def test_semantic_version_name_minor_over_2digits() -> None:
     assert Utils.is_file_name_valid('V1_0_100__test1.sql')
+
+
+@pytest.mark.helpers_test
+def test_get_two_statements():
+    with open(os.path.join('tests', 'data', 'sql_server_go_separator', '1_two_statements.sql')) as f:
+        scripts = Utils.split_script_on_go(f.read())
+        assert len(scripts) == 2
+        assert scripts[0] == "SELECT * FROM table1;"
+        assert scripts[1] == "SELECT * FROM table2;"
+
+
+@pytest.mark.helpers_test
+def test_split_script_on_go_padding_variants():
+   with open(os.path.join('tests', 'data', 'sql_server_go_separator', '2_go_padding_variants.sql')) as f:
+      scripts = Utils.split_script_on_go(f.read())
+      assert len(scripts) == 4
+      assert scripts[0] == "SELECT * FROM table1;"
+      assert scripts[1] == "SELECT * FROM table2;"
+      assert scripts[2] == "SELECT * FROM table3;"
+      assert scripts[3] == "SELECT * FROM table4;"
+
+
+@pytest.mark.helpers_test
+def test_split_script_on_go_repetitive_statements():
+   with open(os.path.join('tests', 'data', 'sql_server_go_separator', '3_repetitive_go_statements.sql')) as f:
+      scripts = Utils.split_script_on_go(f.read())
+      assert len(scripts) == 5
+      assert scripts[0] == "SELECT * FROM table1;"
+      assert scripts[1] == "SELECT * FROM table1;"
+      assert scripts[2] == "SELECT * FROM table2;"
+      assert scripts[3] == "SELECT * FROM table2;"
+      assert scripts[4] == "SELECT * FROM table2;"
