@@ -23,6 +23,10 @@ class _Log():
         if self.logger:
             self.logger.error(Utils.color(msg, bcolors.FAIL))
 
+    def warn(self, msg):
+        if self.logger:
+            self.logger.warn(Utils.color(msg, bcolors.WARNING))
+
     def success(self, msg):
         self.logger.info(Utils.color(msg, bcolors.OKGREEN))
 
