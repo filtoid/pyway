@@ -25,6 +25,7 @@ def mysqld_connect(autouse: bool = True) -> Mysqld:
     return mysqld.run()
 
 
+@pytest.mark.mysqld
 @pytest.mark.migrate_test
 @pytest.mark.mysqld_test
 def test_pyway_migrate(mysqld_connect: Mysqld) -> None:
@@ -42,6 +43,7 @@ def test_pyway_migrate(mysqld_connect: Mysqld) -> None:
     assert strip_ansi(output) == MIGRATE_OUTPUT
 
 
+@pytest.mark.mysqld
 @pytest.mark.migrate_test
 @pytest.mark.mysqld_test
 def test_pyway_migrate_nothingtodo(mysqld_connect: Mysqld) -> None:

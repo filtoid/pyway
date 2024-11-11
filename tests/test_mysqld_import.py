@@ -42,6 +42,7 @@ def test_pyway_table_import(mysqld_connect: Mysqld) -> None:
     assert output == "V01_01__test1.sql"
 
 
+@pytest.mark.mysqld
 @pytest.mark.import_test
 @pytest.mark.mysqld_test
 def test_pyway_table_import_fullfilepath(mysqld_connect: Mysqld) -> None:
@@ -60,6 +61,7 @@ def test_pyway_table_import_fullfilepath(mysqld_connect: Mysqld) -> None:
     assert output == "V01_01__test1.sql"
 
 
+@pytest.mark.mysqld
 @pytest.mark.import_test
 @pytest.mark.mysqld_test
 def test_pyway_table_import_noschema(mysqld_connect: Mysqld) -> None:
@@ -78,6 +80,7 @@ def test_pyway_table_import_noschema(mysqld_connect: Mysqld) -> None:
     assert True
 
 
+@pytest.mark.mysqld
 @pytest.mark.import_test
 @pytest.mark.mysqld_test
 def test_pyway_table_import_filenotfound(mysqld_connect: Mysqld) -> None:
@@ -97,6 +100,7 @@ def test_pyway_table_import_filenotfound(mysqld_connect: Mysqld) -> None:
     assert True
 
 
+@pytest.mark.mysqld
 @pytest.mark.import_test
 @pytest.mark.mysqld_test
 def test_pyway_table_import_invalidfilename(mysqld_connect: Mysqld) -> None:
