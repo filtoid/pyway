@@ -18,7 +18,6 @@ def mysqld_connect(autouse: bool = True) -> Mysqld:
     return mysqld.run()
 
 
-@pytest.mark.mysqld
 @pytest.mark.validate_test
 @pytest.mark.mysqld_test
 def test_pyway_table_validate(mysqld_connect: Mysqld) -> None:
@@ -40,7 +39,6 @@ def test_pyway_table_validate(mysqld_connect: Mysqld) -> None:
     assert strip_ansi(output) == VALIDATE_OUTPUT
 
 
-@pytest.mark.mysqld
 @pytest.mark.validate_test
 @pytest.mark.mysqld_test
 def test_pyway_table_validate_noschemasfound(mysqld_connect: Mysqld) -> None:
@@ -61,7 +59,6 @@ def test_pyway_table_validate_noschemasfound(mysqld_connect: Mysqld) -> None:
     assert True
 
 
-@pytest.mark.mysqld
 @pytest.mark.validate_test
 @pytest.mark.mysqld_test
 def test_pyway_table_validate_noschemasfound_skiperror(mysqld_connect: Mysqld) -> None:
@@ -80,7 +77,6 @@ def test_pyway_table_validate_noschemasfound_skiperror(mysqld_connect: Mysqld) -
     assert output == ""
 
 
-@pytest.mark.mysqld
 @pytest.mark.validate_test
 @pytest.mark.mysqld_test
 def test_pyway_table_validate_nofilesfound(mysqld_connect: Mysqld) -> None:
@@ -107,7 +103,6 @@ def test_pyway_table_validate_nofilesfound(mysqld_connect: Mysqld) -> None:
     assert True
 
 
-@pytest.mark.mysqld
 @pytest.mark.validate_test
 @pytest.mark.mysqld_test
 def test_pyway_table_validate_diffname(mysqld_connect: Mysqld) -> None:
@@ -135,7 +130,6 @@ def test_pyway_table_validate_diffname(mysqld_connect: Mysqld) -> None:
     assert bool("with diff name of the database" in str(e.value))
 
 
-@pytest.mark.mysqld
 @pytest.mark.validate_test
 @pytest.mark.mysqld_test
 def test_pyway_table_validate_diffchecksum(mysqld_connect: Mysqld) -> None:
@@ -163,7 +157,6 @@ def test_pyway_table_validate_diffchecksum(mysqld_connect: Mysqld) -> None:
     assert bool("with diff script" in str(e.value))
 
 
-@pytest.mark.mysqld
 @pytest.mark.validate_test
 @pytest.mark.mysqld_test
 def test_pyway_table_validate_diffchecksum_dos(mysqld_connect: Mysqld) -> None:
@@ -191,7 +184,6 @@ def test_pyway_table_validate_diffchecksum_dos(mysqld_connect: Mysqld) -> None:
     assert bool("DOS" in str(e.value))
 
 
-@pytest.mark.mysqld
 @pytest.mark.validate_test
 @pytest.mark.mysqld_test
 def test_pyway_table_validate_outofdate(mysqld_connect: Mysqld) -> None:

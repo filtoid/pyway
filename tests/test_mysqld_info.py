@@ -21,7 +21,6 @@ def mysqld_connect(autouse=True) -> Mysqld:
     return mysqld.run()
 
 
-@pytest.mark.mysqld
 @pytest.mark.info_test
 @pytest.mark.mysqld_test
 def test_pyway_info(mysqld_connect: Mysqld) -> None:
@@ -38,7 +37,6 @@ def test_pyway_info(mysqld_connect: Mysqld) -> None:
     assert strip_ansi(tbl) == INFO_OUTPUT
 
 
-@pytest.mark.mysqld
 @pytest.mark.info_test
 @pytest.mark.mysqld_test
 def test_pyway_info_nofiles(mysqld_connect: Mysqld) -> None:

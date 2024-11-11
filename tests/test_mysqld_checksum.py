@@ -14,7 +14,6 @@ def mysqld_connect(autouse: bool = True) -> Mysqld:
     return mysqld.run()
 
 
-@pytest.mark.mysqld
 @pytest.mark.checksum_test
 @pytest.mark.mysqld_test
 def test_pyway_table_checksum(mysqld_connect: Mysqld) -> None:
@@ -38,7 +37,6 @@ def test_pyway_table_checksum(mysqld_connect: Mysqld) -> None:
     assert checksum == "8327AD7B"
 
 
-@pytest.mark.mysqld
 @pytest.mark.checksum_test
 @pytest.mark.mysqld_test
 def test_pyway_table_checksum_fileinvalid(mysqld_connect: Mysqld) -> None:
@@ -61,7 +59,7 @@ def test_pyway_table_checksum_fileinvalid(mysqld_connect: Mysqld) -> None:
 
     assert True
 
-@pytest.mark.mysqld
+
 @pytest.mark.checksum_test
 @pytest.mark.mysqld_test
 def test_pyway_table_checksum_fullpath(mysqld_connect: Mysqld) -> None:
@@ -85,7 +83,6 @@ def test_pyway_table_checksum_fullpath(mysqld_connect: Mysqld) -> None:
     assert checksum == "8327AD7B"
 
 
-@pytest.mark.mysqld
 @pytest.mark.checksum_test
 @pytest.mark.mysqld_test
 def test_pyway_table_checksum_invalid_filename(mysqld_connect: Mysqld) -> None:
