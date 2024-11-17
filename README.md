@@ -129,3 +129,11 @@ This allows the user to import a schema file into the migration, for example if 
 Updates a checksum in the database. This is for advanced use only, as it could put the pyway database out of sync with reality.  This is mainly to be used for development, where your pyway file may change because of manual applies or formatting changes. It is meant to get the database in sync with what you believe to be the current state of your system. It should NEVER be used in production, only initial development. If you require schema changes in production, create a new schema and apply that.
 
     $ pyway checksum --checksum-file V01_01__initial_schema.sql
+
+
+##### Running tests with Docker-compose
+`docker-compose up --abort-on-container-exit`
+
+`--abort-on-container-exit` causes the process to stop when one container finished (ie. the one running tests) and passes the exit-code back again.
+
+`docker run -ti -e ACCEPT_EULA=Y -e SA_PASSWORD=p@ssw0rd! -p 1433:1433  mcr.microsoft.com/mssql/server:2019-latest`

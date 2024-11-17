@@ -1,0 +1,3 @@
+CREATE DATABASE [PywayTests]
+
+GO

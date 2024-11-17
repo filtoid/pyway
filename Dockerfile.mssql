@@ -1,0 +1,31 @@
+FROM mcr.microsoft.com/mssql/server:2022-CU16-ubuntu-22.04
+USER root
+
+ENV ACCEPT_EULA Y
+ENV SA_PASSWORD p@ssw0rd!
+ENV MSSQL_PID developer
+
+RUN apt update && apt install mssql-tools unixodbc-dev -y
+RUN ACCEPT_EULA=Y apt-get install -y msodbcsql18
+
+ENV PATH="$PATH:/opt/mssql-tools/bin"
+EXPOSE 1433
+
+RUN mkdir -p /usr/config
+WORKDIR /usr/config
+
+COPY ./tests/setup/configure_db.sh /usr/config/configure_db.sh
+COPY ./tests/setup/entrypoint.sh /usr/config/entrypoint.sh
+COPY ./tests/setup/mssql_setup.sql /usr/config/mssql_setup.sql
+
+ENTRYPOINT ["./entrypoint.sh"]
+# WORKDIR /app/
+
+# RUN apt update && apt install python3-pip -y
+# RUN alias python=python3
+
+# COPY . .
+
+# RUN python3 -m pip install -r requirements.txt
+
+# ENTRYPOINT [ "python3", "-m", "pytest", "tests", "--skip-mysqld-tests", "true", "--skip-postgres-tests", "true"]

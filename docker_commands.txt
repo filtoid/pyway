@@ -1,0 +1,6 @@
+docker network create testing-network
+docker run --name my-mssql --network testing-network -p 1433:1433 -d mssql_server
+
+docker build -t mssql_tests -f Dockerfile.mssqltests .
+
+docker run -ti --entrypoint bash --network testing-network mssql_tests

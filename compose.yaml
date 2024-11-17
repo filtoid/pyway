@@ -1,0 +1,19 @@
+version: '3.6'
+services:
+  mssql:
+    build:
+      context: .
+      dockerfile: Dockerfile.mssql
+    restart: always
+    # image: mcr.microsoft.com/mssql/server:2019-latest
+    user: root
+    ports:
+      - 1433:1433
+    volumes:
+      - ./data:/var/opt/mssql/data
+  mssql-tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.mssqltests
+    links:
+      - mssql

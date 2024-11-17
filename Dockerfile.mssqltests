@@ -1,0 +1,23 @@
+FROM mcr.microsoft.com/mssql/server:2022-CU16-ubuntu-22.04
+USER root
+
+ENV ACCEPT_EULA Y
+ENV SA_PASSWORD p@ssw0rd!
+ENV MSSQL_PID developer
+
+
+RUN apt update
+RUN apt install python3-pip libodbc2 unixodbc-dev mssql-tools -y
+
+ENV PATH="$PATH:/opt/mssql-tools/bin"
+
+RUN python3 -m pip install mssql
+
+COPY requirements.txt .
+
+RUN python3 -m pip install -r requirements.txt
+
+COPY . .
+
+# ENTRYPOINT [ "bash" ]
+ENTRYPOINT [ "python3", "-m", "pytest", "tests", "--skip-mysqld-tests", "true", "--skip-postgres-tests", "true"]
