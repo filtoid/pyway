@@ -18,6 +18,9 @@ COPY ./tests/setup/configure_db.sh /usr/config/configure_db.sh
 COPY ./tests/setup/entrypoint.sh /usr/config/entrypoint.sh
 COPY ./tests/setup/mssql_setup.sql /usr/config/mssql_setup.sql
 
+RUN chmod +x ./configure_db.sh
+RUN chmod +x ./entrypoint.sh
+
 ENTRYPOINT ["./entrypoint.sh"]
 # WORKDIR /app/
 

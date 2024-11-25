@@ -137,3 +137,5 @@ Updates a checksum in the database. This is for advanced use only, as it could p
 `--abort-on-container-exit` causes the process to stop when one container finished (ie. the one running tests) and passes the exit-code back again.
 
 `docker run -ti -e ACCEPT_EULA=Y -e SA_PASSWORD=p@ssw0rd! -p 1433:1433  mcr.microsoft.com/mssql/server:2019-latest`
+
+**NOTE** This will probably not work on MacOS - [https://github.com/microsoft/mssql-docker/issues/802](https://github.com/microsoft/mssql-docker/issues/802)
