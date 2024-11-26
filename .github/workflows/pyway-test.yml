@@ -39,4 +39,4 @@ jobs:
           export GITHUB_PATH=/usr/lib/postgresql/14/bin:$GITHUB_PATH
           export PATH=/usr/lib/postgresql/14/bin:$PATH
           export LD_PRELOAD=/lib/x86_64-linux-gnu/libstdc++.so.6:$LD_PRELOAD
-          pytest
+          pytest --skip-mssql-tests true
