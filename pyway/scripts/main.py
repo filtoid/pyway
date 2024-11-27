@@ -56,7 +56,7 @@ def cli() -> None:
 
     # Validate required vars
     Utils.check_required_vars(["database_type", "database_table", "database_host",
-                               "database_name", "database_username"], config)
+                               "database_name"], config) #, "database_username" - temporarily removed to make it work with trusted conn
 
     if config.cmd == "info":
         info(config)
