@@ -19,6 +19,12 @@ jobs:
         run: |
           brew install mariadb
           brew install postgresql
+          
+          # taken from https://learn.microsoft.com/en-us/sql/connect/odbc/linux-mac/install-microsoft-odbc-driver-sql-server-macos
+          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+          brew tap microsoft/mssql-release https://github.com/Microsoft/homebrew-mssql-release
+          brew update
+          HOMEBREW_ACCEPT_EULA=Y brew install msodbcsql18 mssql-tools18
 
           python -m pip install --upgrade pip
           pip install flake8 pytest build
