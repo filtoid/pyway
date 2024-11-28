@@ -59,7 +59,7 @@ def cli() -> None:
                                "database_name"], config)
 
     # Username not required for sqlserver if connection is trusted (native auth)
-    if config['database_type'].lower() != 'sqlserver' or \
+    if config.database_type.lower() != 'sqlserver' or \
             not getattr(config, "database_trusted_connection") or \
             not config.database_trusted_connection:
         Utils.check_required_vars(["database_username"], config)
