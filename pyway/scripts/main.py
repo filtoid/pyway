@@ -56,7 +56,13 @@ def cli() -> None:
 
     # Validate required vars
     Utils.check_required_vars(["database_type", "database_table", "database_host",
-                               "database_name"], config) #, "database_username" - temporarily removed to make it work with trusted conn
+                               "database_name"], config)
+
+    # Username not required for sqlserver if connection is trusted (native auth)
+    if config['database_type'].lower() != 'sqlserver' or \
+            not getattr(config, "database_trusted_connection") or \
+            not config.database_trusted_connection:
+        Utils.check_required_vars(["database_username"], config)
 
     if config.cmd == "info":
         info(config)
