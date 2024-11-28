@@ -13,6 +13,7 @@ class ConfigFile():
         self.database_username = os.environ.get('PYWAY_DATABASE_USERNAME', kwargs.get('database_username'))
         self.database_password = os.environ.get('PYWAY_DATABASE_PASSWORD', kwargs.get('database_password'))
         self.database_collation = os.environ.get('PYWAY_DATABASE_COLLATION', 'utf8mb4_general_ci')
+        self.database_trusted_connection = os.environ.get('PYWAY_DATABASE_TRUSTED_CONNECTION', kwargs.get('database_password'))
         self.schema_file: Union[str, None] = None
         self.checksum_file = None
         self.config = os.environ.get('PYWAY_CONFIG_FILE', '.pyway.conf')

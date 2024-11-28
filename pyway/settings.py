@@ -13,7 +13,8 @@ SQL_MIGRATION_SEPARATOR = os.environ.get('PYWAY_SQL_MIGRATION_SEPARATOR', '__')
 SQL_MIGRATION_SUFFIXES = os.environ.get('PYWAY_SQL_MIGRATION_SUFFIXES', '.sql')
 ARGS = ['database_migration_dir', 'database_table', 'database_type', 'database_host',
         'database_port', 'database_name', 'database_username', 'database_password',
-        'database_collation', 'schema_file', 'checksum_file', 'config', 'version', 'cmd']
+        'database_collation', 'database_trusted_connection', 'schema_file', 'checksum_file',
+        'config', 'version', 'cmd']
 
 
 class Settings():
